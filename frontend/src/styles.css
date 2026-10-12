@@ -1,0 +1,87 @@
+:root {
+  --bg: #f5f6f8; --panel: #fff; --text: #1d2433; --muted: #6b7385; --line: #e1e4ea;
+  --primary: #2457d6; --primary-dark: #1b44ac; --danger: #c0392b; --warn: #b7791f; --ok: #1f8a4c;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); }
+h2, h3, h4 { margin: 0 0 8px; }
+code, pre { font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; }
+pre { background: #f0f2f6; border-radius: 6px; padding: 8px; margin: 6px 0; overflow: auto; white-space: pre-wrap; word-break: break-word; }
+
+.topbar { display: flex; align-items: center; gap: 24px; background: #111827; color: #fff; padding: 0 20px; height: 52px; }
+.topbar .brand { font-weight: 600; }
+.topbar nav { display: flex; gap: 4px; }
+.topbar a { color: #cbd5e1; text-decoration: none; padding: 8px 12px; border-radius: 6px; }
+.topbar a.active, .topbar a:hover { background: #1f2937; color: #fff; }
+.content { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+.muted { color: var(--muted); } .small { font-size: 12.5px; }
+.row { display: flex; gap: 8px; align-items: center; } .between { justify-content: space-between; }
+.grow { flex: 1; } .grow3 { flex: 3; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+label { display: block; font-size: 13px; font-weight: 500; margin: 10px 0 4px; }
+label.check { display: flex; align-items: center; gap: 6px; font-weight: 400; }
+label.check.inline { margin: 0; white-space: nowrap; }
+input[type=text], input[type=password], input:not([type]), select, textarea {
+  width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font: inherit; background: #fff;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid #bcd0ff; border-color: var(--primary); }
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched { border-color: var(--danger); }
+input[type=checkbox] { width: auto; }
+
+button, .btn { font: inherit; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--line); background: #fff; cursor: pointer; text-decoration: none; color: var(--text); }
+button:hover:not(:disabled) { background: #f1f3f7; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+button.primary, .btn.primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+button.primary:hover:not(:disabled) { background: var(--primary-dark); }
+button.danger { color: var(--danger); }
+button.link { border: 0; background: none; color: var(--primary); padding: 6px 0; }
+
+.alert { background: #fdecea; color: #8a1f14; border: 1px solid #f5c2bd; padding: 10px 12px; border-radius: 8px; margin-bottom: 12px; }
+.chip { display: inline-block; background: #eef2fb; color: #274690; border-radius: 12px; padding: 2px 9px; margin: 2px 4px 2px 0; font-size: 12px; }
+.chip.warn { background: #fdf3e0; color: var(--warn); }
+.badge { margin-left: 8px; font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #e5e7eb; }
+.badge.ACTIVE { background: #def5e8; color: var(--ok); } .badge.DISABLED { background: #fdecea; color: var(--danger); }
+.agent-name { font-weight: 600; }
+.agent-card details { margin-top: 10px; } .agent-card table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.agent-card th, .agent-card td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 13px; }
+
+.param-row { display: grid; grid-template-columns: 1.2fr .8fr .8fr auto 2fr auto; gap: 8px; align-items: center; margin-bottom: 6px; }
+
+.chat-layout { display: grid; grid-template-columns: 320px 1fr; gap: 14px; height: calc(100vh - 52px - 40px); }
+.agents-panel { overflow: auto; margin: 0; }
+.agent-item { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: 8px; padding: 10px; margin: 8px 0; cursor: pointer; font-weight: 400; }
+.agent-item.selected { border-color: var(--primary); background: #f5f8ff; }
+.chat-panel { display: flex; flex-direction: column; margin: 0; padding: 0; overflow: hidden; }
+.messages { flex: 1; overflow: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.empty { margin: auto; text-align: center; max-width: 420px; }
+.bubble { max-width: 78%; padding: 9px 13px; border-radius: 12px; white-space: pre-wrap; word-break: break-word; }
+.bubble.user { align-self: flex-end; background: var(--primary); color: #fff; }
+.bubble.assistant { align-self: flex-start; background: #eef0f4; }
+.bubble.error { align-self: center; background: #fdecea; color: #8a1f14; }
+.bubble.tool { align-self: flex-start; background: #f7f8fb; border: 1px dashed #c8cedb; font-size: 13px; }
+.bubble.tool summary { cursor: pointer; }
+.confirm { border-top: 1px solid var(--line); background: #fffaf0; padding: 12px 16px; }
+.composer { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--line); }
+
+@media (max-width: 900px) {
+  .chat-layout { grid-template-columns: 1fr; height: auto; }
+  .grid2, .param-row { grid-template-columns: 1fr; }
+}
+
+/* mode toggle + plan panel */
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin-bottom: 6px; }
+.seg button { border: 0; border-radius: 0; background: #fff; padding: 6px 16px; }
+.seg button.on { background: var(--primary); color: #fff; }
+.plan { border-top: 1px solid var(--line); background: #f8faff; padding: 10px 16px; font-size: 13px; }
+.plan-goal { margin-bottom: 6px; }
+.plan-step { display: flex; align-items: center; gap: 8px; padding: 3px 0; }
+.step-no { width: 20px; height: 20px; border-radius: 50%; background: #dbe4fb; color: #274690; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.step-intent { flex: 1; }
+.status { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #e5e7eb; white-space: nowrap; }
+.status.DONE { background: #def5e8; color: var(--ok); }
+.status.RUNNING, .status.WAITING_APPROVAL { background: #fdf3e0; color: var(--warn); }
+.status.FAILED, .status.REJECTED { background: #fdecea; color: var(--danger); }
+.status.SKIPPED { background: #eef0f4; color: var(--muted); }

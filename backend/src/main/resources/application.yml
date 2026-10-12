@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: agent-platform
+  datasource:
+    url: jdbc:h2:file:./data/agentdb;AUTO_SERVER=TRUE
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: true   # keeps lazy collections (tools/params) readable during a request
+  http:
+    client:
+      read-timeout: 300s # local models can be slow
+    clients:
+      read-timeout: 300s # Boot 4 name; the one that does not apply is ignored
+  ai:
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+      chat:
+        # The Spring AI 2.x docs show both property layouts (with and without ".options"),
+        # so both are set. Unknown keys are ignored.
+        model: ${OLLAMA_MODEL:qwen2.5:3b-instruct}   # must support tools; check `ollama list`
+        temperature: 0.2
+        num-ctx: 8192                                # context window; lower it if memory is tight
+        options:
+          model: ${OLLAMA_MODEL:qwen2.5:3b-instruct}
+          temperature: 0.2
+          num-ctx: 8192
+
+platform:
+  cors-origins: http://localhost:4200
+  seed-examples: true            # creates the "kawach" and "notification" demo agents on first start
+  mock-services-enabled: true    # exposes /mock/kawach/** and /mock/notify/** so the demo works offline
+  # SSRF protection: when non-empty, agents can only be onboarded for these hosts.
+  # allowed-hosts:
+  #   - kawach.example.internal
+  #   - notify.example.internal

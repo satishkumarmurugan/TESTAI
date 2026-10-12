@@ -1,0 +1,19 @@
+{
+  "name": "kawach",
+  "description": "Manages users, groups and roles per application.",
+  "baseUrl": "https://kawach.example.internal",
+  "tools": [
+    {
+      "name": "createUser",
+      "description": "Create a user in an application.",
+      "httpMethod": "POST",
+      "contextPath": "/api/applications/{appId}/users",
+      "requiresConfirmation": true,
+      "params": [
+        {"name": "appId", "type": "string", "location": "PATH", "required": true, "description": "Application id"},
+        {"name": "username", "type": "string", "location": "BODY", "required": true, "description": "Login name"},
+        {"name": "email", "type": "string", "location": "BODY", "required": false, "description": "Email address"}
+      ]
+    }
+  ]
+}
